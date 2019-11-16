@@ -27,5 +27,4 @@ export class ParserController {
     //
     //   console.log(name);
     // });
-  }
 }
