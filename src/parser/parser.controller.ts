@@ -1,4 +1,4 @@
-import { Controller, Get, Redirect, Res } from '@nestjs/common';
+import { Controller, Get, Redirect, Req, Res } from '@nestjs/common';
 import { ParserService } from './parser.service';
 import * as cheerio from 'cheerio';
 import * as puppeteer from 'puppeteer';
@@ -9,7 +9,7 @@ export class ParserController {
 
   @Get('/parse')
   @Redirect('http://localhost:4200/start', 302)
-  async getParsed(@Res() res) {
+  async getParsed(@Req() req, @Res() res) {
       const data = await this.parserService.parse();
       console.log(JSON.stringify(data));
     }

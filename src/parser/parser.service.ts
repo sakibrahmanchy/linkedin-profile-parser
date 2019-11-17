@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import * as cheerio from 'cheerio';
 import * as puppeteer from 'puppeteer';
+import { Experience } from '../interfaces/experience.interface';
+import { Education } from '../interfaces/education.interface';
+import { Project } from '../interfaces/project.interface';
 
 @Injectable()
 export class ParserService {
-  getHello(): string {
-    return 'Hello World!';
-  }
-
   async parse() {
     const browser = await puppeteer.launch({ headless: false, userDataDir: './user_data' });
     const page = await browser.newPage();
@@ -23,9 +22,9 @@ export class ParserService {
       await page.goto(loginUrl);
     } else {
       const $ = cheerio.load(await page.content());
-      const experiences = [];
+      const experiences: Experience[] = [];
       $('.experience li').each((ex, item) => {
-        const experience = {
+        const experience: Experience = {
           title: $(item).find('.experience-item__title').text(),
           subTitle: $(item).find('.experience-item__subtitle-link').text(),
           startDate: $(item).find('.date-range__start-date').text(),
@@ -38,9 +37,9 @@ export class ParserService {
         experiences.push(experience);
       });
 
-      const educations = [];
+      const educations: Education[] = [];
       $('.education li').each((ex, item) => {
-        const education = {
+        const education: Education = {
           title: $(item).find('.result-card__title').text(),
           subTitle: $(item).find('.result-card__subtitle-link').text(),
           startDate: $(item).find('.date-range__start-date').text(),
@@ -54,9 +53,9 @@ export class ParserService {
         educations.push(education);
       });
 
-      const projects = [];
+      const projects: Project[] = [];
       $('.projects li').each((ex, item) => {
-        const project = {
+        const project: Project = {
           title: $(item).find('.result-card__title-link').text(),
           startDate: $(item).find('.date-range__start-date').text(),
           endDate: $(item).find('.date-range__end-date').text(),
