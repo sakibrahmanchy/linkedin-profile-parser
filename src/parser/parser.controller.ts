@@ -8,7 +8,7 @@ export class ParserController {
   constructor(private readonly parserService: ParserService) {}
 
   @Get('/parse')
-  @Redirect('http://localhost:4200/start', 302)
+  @Redirect('http://192.168.0.102:4200/start', 302)
   async getParsed(@Req() req, @Res() res) {
       const data = await this.parserService.parse();
       console.log(JSON.stringify(data));

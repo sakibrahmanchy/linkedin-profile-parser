@@ -1,6 +1,6 @@
 export interface Education {
-  readonly  title: string;
-  readonly  subTitle: string;
+  readonly title: string;
+  readonly subTitle: string;
   readonly startDate: string;
   readonly endDate: string;
   readonly duration: string;

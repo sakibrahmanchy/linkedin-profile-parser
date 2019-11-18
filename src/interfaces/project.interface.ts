@@ -1,5 +1,5 @@
 export interface Project {
-  readonly  title: string;
+  readonly title: string;
   readonly startDate: string;
   readonly endDate: string;
   readonly duration: string;
