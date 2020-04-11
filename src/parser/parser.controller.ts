@@ -11,7 +11,6 @@ export class ParserController {
   async getParsed(@Req() req, @Res() res) {
       const linkedinUrl = req.query.url ? req.query.url : 'https://www.linkedin.com/in/sakibur-rahaman-chowdhury-77359b132/';
       const data = await this.parserService.parse(linkedinUrl);
-      console.log(data);
       res.redirect('http://192.168.0.102:4200/');
       console.log("Data has been parsed");
     }
